@@ -1,0 +1,25 @@
+{
+  "name": "knockout-collection",
+  "version": "1.0.0",
+  "description": "A knockout observable array as hashmap",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webforge-labs/knockout-collection.git"
+  },
+  "keywords": [
+    "knockout",
+    "observableArray",
+    "collection",
+    "hashmap"
+  ],
+  "author": "Philipp Scheit <p.scheit@ps-webforge.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webforge-labs/knockout-collection/issues"
+  },
+  "homepage": "https://github.com/webforge-labs/knockout-collection#readme"
+}
