@@ -37,7 +37,8 @@ If you need direct access to the underlying `ko.observableArray` you can use `co
 
 #### .add(item)
 
-adds an item to the collection which is identified by the value of the (observable-)property with name `options.key`.
+adds an item to the collection which is identified by the value of the (observable-)property with name `options.key`.  
+**The item is only added, if it isn't already contained in the collection**
 
 #### .removeElement(item)
 
