@@ -16,8 +16,7 @@ requirejs.config({
   nodeRequire: require,
   baseUrl: 'src/js/',
   paths: {
-    'ko': module.exports.file('node_modules/knockout/build/output/knockout-latest.debug'),
-    'knockout-collection': module.exports.file('index'),
-    'knockout-mapping': module.exports.file('node_modules/knockout-mapping/dist/knockout-mapping')
+    'knockout-collection': module.exports.file('index')
+    // note that knockout and knockout-mapping are loaded with nodeRequire
   }
 });

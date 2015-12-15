@@ -2,6 +2,7 @@ var boot = require('./bootstrap');
 var expect = boot.expect;
 
 var KnockoutCollection = boot.requirejs('knockout-collection');
+var ko = boot.requirejs('knockout');
 var koMapping = boot.requirejs('knockout-mapping');
 
 describe('KnockoutCollection', function() {
@@ -75,4 +76,31 @@ describe('KnockoutCollection', function() {
     });
   });
 
+  describe('example()', function() {
+
+    it("should compile and work", function() {
+      var item1 = {
+        id: ko.observable(1),
+        label: 'Item 1'
+      };
+
+      var item2 = {
+        id: ko.observable(2),
+        label: 'Item 2'
+      }
+
+      var collection = new KnockoutCollection([item1], { key: 'id' });
+
+      expect(collection.get(2)).to.be.undefined;
+
+      collection.add(item2);
+
+      expect(collection.get(2)).to.have.property('label', 'Item 2');
+
+      collection.removeElement(item1);
+      collection.removeElement(item2);
+
+      expect(collection.toArray()).to.have.length(0);
+    });
+  });
 });
