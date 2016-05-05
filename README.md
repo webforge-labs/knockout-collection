@@ -53,3 +53,6 @@ it will return `undefined` if the collection does not contain the item.
 
 checks if the item is contained in the collection.
 
+#### .toArray()
+
+returns an array with all items of the collection. The array is a copy.
