@@ -1,6 +1,6 @@
 {
   "name": "knockout-collection",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A knockout observable array as hashmap",
   "main": "index.js",
   "scripts": {
