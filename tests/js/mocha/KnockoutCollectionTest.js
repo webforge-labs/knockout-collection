@@ -64,15 +64,42 @@ describe('KnockoutCollection', function() {
     });
   });
 
-  describe('removeElement()', function() {
+  describe('remove()', function() {
     it("should remove from the collection by element", function() {
       this.collection.add(this.item1);
       this.collection.add(this.item2);
       this.collection.add(this.item3);
 
-      this.collection.removeElement(this.item2);
+      this.collection.remove(this.item2);
 
       expect(this.collection.toArray()).to.be.eql([this.item1, this.item3]);
+    });
+  });
+
+  describe('.length ', function() {
+    it("should represent the length of the internal array", function() {
+      expect(this.collection).to.have.length(0);
+
+      this.collection.add(this.item1);
+      this.collection.add(this.item2);
+
+      expect(this.collection).to.have.length(2);
+    });
+  });
+
+  describe('options: reference', function() {
+    it("should reference and observableArray intead of creating one", function() {
+      var items = ko.observableArray([this.item1, this.item2]);
+      var collection = new KnockoutCollection(items, { key: 'id', reference: true });
+
+      expect(collection).to.have.length(2);
+
+      collection.remove(this.item1);
+
+      expect(collection).to.have.length(1);
+      expect(items()).to.have.length(1);
+
+      expect(collection.toArray()).to.be.eql([this.item2]);
     });
   });
 
@@ -97,10 +124,11 @@ describe('KnockoutCollection', function() {
 
       expect(collection.get(2)).to.have.property('label', 'Item 2');
 
-      collection.removeElement(item1);
-      collection.removeElement(item2);
+      collection.remove(item1);
+      collection.remove(item2);
 
       expect(collection.toArray()).to.have.length(0);
+      expect(collection).to.have.length(0);
     });
   });
 });
