@@ -1,10 +1,13 @@
 define(['knockout'], function(ko) {
 
-  // Interface: http://www.doctrine-project.org/api/common/2.5/class-Doctrine.Common.Collections.Collection.html
   return function KnockoutCollection(items, options) {
     var that = this;
 
-    this.items = ko.observableArray(items);
+    if (options && options.reference === true) {
+      this.items = items;
+    } else {
+      this.items = ko.observableArray(items);
+    }
 
     this.key = function(item) {
       return ko.unwrap(item[options.key]);
@@ -42,7 +45,7 @@ define(['knockout'], function(ko) {
       return undefined;
     };
 
-    this.removeElement = function(item) {
+    this.remove = function(item) {
       var key = that.key(item);
 
       var items = that.items();
@@ -54,8 +57,18 @@ define(['knockout'], function(ko) {
       }
     };
 
+    this.removeAll = function() {
+      that.items.removeAll();
+    };
+
     this.toArray = function() {
       return that.items.slice();
     };
+
+    // initialize corerctly, because the first subscription will not be triggered
+    this.length = that.items().length;
+    that.items.subscribe(function(items) {
+      that.length = items.length;
+    });
   };
 });
